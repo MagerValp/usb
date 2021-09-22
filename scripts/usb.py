@@ -70,7 +70,7 @@ def main():
     info = get_usb_info()
     result = flatten_usb_info(info)
 
-    # Write bluetooth results to cache
+    # Write usb results to cache
     cachedir = '%s/cache' % os.path.dirname(os.path.realpath(__file__))
     output_plist = os.path.join(cachedir, 'usbinfo.plist')
     plistlib.writePlist(result, output_plist)

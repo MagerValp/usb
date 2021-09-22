@@ -93,7 +93,7 @@ class Usb_model extends \Model {
 
 			// Map name to device type
 			$device_types = array(
-				'Camera' => 'isight|camera|video|facetime',
+				'Camera' => 'isight|camera|video|facetime|webcam',
 				'USB Hub' => 'hub',
 				'Keyboard' => 'keyboard|keykoard|usb kb',
 				'IR Receiver' => 'ir receiver',
@@ -103,17 +103,21 @@ class Usb_model extends \Model {
 				'iPod' => 'ipod',
 				'Mouse' => 'mouse|ps2 orbit|trackpad',
 				'Mass Storage' => 'card reader|os x install disk|apple usb superdrive|ultra fast media reader|usb to serial-ata bridge',
+				'Audio Device' => 'audio|sound|headset|microphone|akm',
 				'Display' => 'displaylink|display|monitor|touchscreen',
 				'Composite Device' => 'composite device',
 				'Network' => 'network|ethernet|modem|bcm',
 				'UPS' => 'ups',
-				'Audio Device' => 'audio|sound|headset|microphone|akm',
 				'iBridge' => 'ibridge',
 				'Scanner' => 'scanner',
 				'Wacom Tablet' => 'wacom|ptz-|intuos|ctl-',
 				'Interactive Board' => 'smartboard|activboard'
 			);
 
+			// Set device type to be default of unknown
+			$device['type'] = "unknown";
+
+			// Set new device type based on device name
 			$device_name = strtolower($device['name']);
 			foreach($device_types as $type => $pattern){
 				if (preg_match('/'.$pattern.'/', $device_name)){
